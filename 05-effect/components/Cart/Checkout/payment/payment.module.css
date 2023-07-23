@@ -1,0 +1,40 @@
+.Cart {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 700rem;
+  height: 80rem;
+  bottom: 40rem;
+  background-color: #333;
+  border-radius: 40rem;
+  margin-left: 22rem;
+  z-index: 9999;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 30rem;
+  font-size: 24rem;
+  color: #ccc;
+}
+
+.price span {
+  color: #fff;
+  font-size: 28rem;
+  margin-left: 4rem;
+}
+
+.price span::before {
+  content: '￥';
+  font-size: 24rem;
+}
+
+.button {
+  border: none;
+  background-color: #fcbf49;
+  width: 200rem;
+  border-radius: 40rem;
+  font-size: 26rem;
+}

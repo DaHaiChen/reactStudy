@@ -1,0 +1,70 @@
+.Cart {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 700rem;
+  height: 80rem;
+  bottom: 40rem;
+  background-color: #333;
+  border-radius: 40rem;
+  margin-left: 22rem;
+  z-index: 9999;
+}
+
+.icon {
+  position: absolute;
+  /* left: 20rem; */
+  top: -20rem;
+  width: 80rem;
+}
+
+.icon img {
+  width: 100%;
+}
+
+.totalAmount {
+  position: absolute;
+  width: 36rem;
+  height: 36rem;
+  color: #fff;
+  background-color: #f00;
+  border-radius: 50%;
+  font-size: 24rem;
+  text-align: center;
+  line-height: 36rem;
+  left: 55rem;
+  top: -5rem;
+}
+
+.price,
+.noMeal {
+  display: flex;
+  align-items: center;
+  margin-left: 100rem;
+  font-size: 36rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.noMeal {
+  color: #aaa;
+}
+
+.price::before {
+  content: '￥';
+  font-size: 24rem;
+}
+
+.button,
+.disabled {
+  border: none;
+  background-color: #fcbf49;
+  width: 200rem;
+  border-radius: 40rem;
+  font-size: 26rem;
+}
+
+.disabled {
+  background-color: #777;
+  color: #eee;
+}

@@ -1,0 +1,47 @@
+.studyPlan {
+  display: flex;
+  align-items: center;
+  background-color: #febf4a;
+  padding: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.studyPlan:hover > .delPlan{
+  visibility: inherit;
+}
+.studyPlan:last-child {
+  margin-bottom: 0;
+}
+
+.studyPlan .learningPath {
+  flex: 1;
+  text-align: center;
+}
+
+.studyName {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.stydyTime {
+  font-size: 14px;
+  color: red;
+}
+
+.delPlan {
+  visibility: hidden;
+  font-size: 14px;
+  background-color: #00AEEC;
+  color: #fff;
+  padding: 5px 14px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+.delPlan:hover {
+  opacity: 1;
+}

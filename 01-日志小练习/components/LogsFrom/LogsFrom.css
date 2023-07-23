@@ -1,0 +1,36 @@
+.logsFrom {
+  margin: 0 auto;
+  padding: 15px;
+  margin-bottom: 16px;
+  background-color: #e4dcb3;
+}
+.from-item {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  /* align-items: center; */
+  flex-flow: row;
+  margin-bottom: 10px;
+}
+
+.from-item input {
+  flex: auto;
+}
+.from-item label {
+  text-align: center;
+  font-size: 14px;
+}
+.from-btn {
+  text-align: center;
+}
+.from-btn button {
+  width: 80px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.from-btn button:hover {
+  background-color: #dbdada;
+}

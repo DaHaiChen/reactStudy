@@ -1,0 +1,26 @@
+.counter {
+  display: flex;
+  align-items: center;
+}
+
+.sub,
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #fcbf49;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 50%;
+  font-size: 20rem;
+}
+
+.sub {
+  background-color: #efefef;
+  border: 2rem solid #000;
+}
+
+.num {
+  margin: 0 8rem;
+}

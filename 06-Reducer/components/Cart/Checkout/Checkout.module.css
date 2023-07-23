@@ -1,0 +1,56 @@
+.checkout {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: #eee;
+  padding: 20rem;
+}
+
+.close {
+  color: #3a3939;
+  font-size: 36rem;
+}
+
+.mealsDesc {
+  border-radius: 20rem 20rem 30rem 30rem;
+  background-color: #fff;
+}
+
+.header {
+  padding: 20rem 40rem;
+  border-bottom: 2rem solid #f2f2f2;
+  font-size: 18rem;
+}
+
+.mealList {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 2rem #f2f2f2 dashed;
+  padding: 40rem;
+  background-color: #fff;
+  border-radius: 30rem 30rem 20rem 20rem;
+
+}
+
+.totalPrice {
+  font-size: 20rem;
+}
+
+.totalPrice span {
+  font-weight: bold;
+  font-size: 28rem;
+  margin-left: 8rem;
+}
+
+.totalPrice span::before {
+  content: '￥';
+  font-size: 24rem;
+}

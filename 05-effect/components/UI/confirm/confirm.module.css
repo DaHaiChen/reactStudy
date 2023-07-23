@@ -1,0 +1,43 @@
+.barkdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm {
+  width: 600rem;
+  height: 300rem;
+  background-color: #fff;
+  border-radius: 30rem;
+  padding: 50rem;
+  box-sizing: border-box;
+}
+
+.text {
+  height: 100rem;
+  font-size: 36rem;
+  text-align: center;
+  line-height: 100rem;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80rem;
+  padding: 0 20rem;
+}
+
+.buttonBox button {
+  height: 60rem;
+  width: 200rem;
+  border: none;
+  border-radius: 30rem;
+  background-color: #fff;
+  border: 2rem solid #d8d8d8;
+  font-size: 28rem;
+}
+
+.affirm {
+  background-color: #f9bc00 !important;
+}
