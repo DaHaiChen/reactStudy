@@ -4,7 +4,7 @@ import StuContent from './store/stuContent'
 import './app.css'
 import useFetch from './hook/useFetch'
 export default function App() {
-  const { data: studs, loading, error, fetchData } = useFetch()
+  const { data: studs, loading, error, fetchData } = useFetch({ url: 'students' })
 
   useEffect(() => {
     fetchData()

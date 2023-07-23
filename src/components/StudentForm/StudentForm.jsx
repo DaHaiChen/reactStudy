@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import StuContent from '../../store/stuContent'
+import useFetch from '../../hook/useFetch'
 export default function StudentForm(props) {
   const [inputData, setInputData] = useState({
     name: props.stu ? props.stu.name : '',
@@ -13,48 +14,33 @@ export default function StudentForm(props) {
       ...data, [key]: e.target.value
     }))
   }
+
+  const { fetchData: addFetchStudent } = useFetch({
+    url: 'students',
+    method: 'post',
+  }, ctx.fetchData)
+
   const addStudent = async () => {
     if (Object.values(inputData).filter(Boolean).length !== 4) return
-    const res = await fetch(`http://localhost:1337/api/students`,
-      {
-        method: 'post',
-        body: JSON.stringify({ data: inputData }),
-        headers: {
-          'Content-type': 'application/json'
-        }
-      })
-    if (res.ok) {
-      console.log('添加成功');
-      ctx.fetchData()
-      setInputData({
-        name: '',
-        gender: '女',
-        age: '',
-        address: ''
-      })
-    }
-  }
-  const updateStudent = useCallback(async (id, newStu) => {
-    try {
-      const res = await fetch(`http://localhost:1337/api/students/${id}`, {
-        method: 'put',
-        body: JSON.stringify({ data: newStu }),
-        headers: {
-          'Content-type': 'application/json'
-        }
-      })
-      if (res.ok) {
-        console.log('修改成功');
-        props.onCancel()
-        ctx.fetchData()
-      }
-    } catch (e) {
+    addFetchStudent(inputData)
+    setInputData({
+      name: '',
+      gender: '女',
+      age: '',
+      address: ''
+    })
 
-    }
-  }, [])
+  }
+
+  const { fetchData: updateFetchStudent } = useFetch({
+    url: `students/${props.stuId}`,
+    method: 'put',
+  }, ctx.fetchData)
+
 
   const updateHandler = () => {
-    updateStudent(props.stuId, inputData)
+    updateFetchStudent(inputData)
+    props.onCancel()
   }
   return (
     <tr>

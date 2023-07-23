@@ -1,23 +1,17 @@
 import React, { useContext, useState } from 'react'
 import StuContent from '../../../store/stuContent'
 import StudentForm from '../../StudentForm/StudentForm'
+import useFetch from '../../../hook/useFetch'
 
 export default function Student(props) {
   const { name, gender, age, address } = props.stu
   const ctx = useContext(StuContent)
-  const deleteHandler = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:1337/api/students/${id}`, { method: 'delete' })
-      if (res.ok) {
-        // alert('删除成功')
-        ctx.fetchData()
-        console.log(ctx);
-      } else {
-        throw new Error()
-      }
-    } catch (e) {
-      // alert('删除失败')
-    }
+  const { fetchData } = useFetch({
+    url: `students/${props.stuId}`,
+    method: 'delete'
+  }, ctx.fetchData)
+  const deleteHandler = async () => {
+    fetchData()
   }
   const [isEdit, setIsEdit] = useState(false)
   const cancelEdit = () => {
