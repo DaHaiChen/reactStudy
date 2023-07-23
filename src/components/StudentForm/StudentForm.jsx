@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import StuContent from '../../store/stuContent'
-export default function StudentForm() {
+export default function StudentForm(props) {
   const [inputData, setInputData] = useState({
-    name: '',
-    gender: '女',
-    age: '',
-    address: ''
+    name: props.stu ? props.stu.name : '',
+    gender: props.stu ? props.stu.gender : '男',
+    age: props.stu ? props.stu.age : '',
+    address: props.stu ? props.stu.address : ''
   })
   const ctx = useContext(StuContent)
   const changeInputData = (e, key) => {
@@ -14,6 +14,7 @@ export default function StudentForm() {
     }))
   }
   const addStudent = async () => {
+    if (Object.values(inputData).filter(Boolean).length !== 4) return
     const res = await fetch(`http://localhost:1337/api/students`,
       {
         method: 'post',
@@ -33,6 +34,28 @@ export default function StudentForm() {
       })
     }
   }
+  const updateStudent = useCallback(async (id, newStu) => {
+    try {
+      const res = await fetch(`http://localhost:1337/api/students/${id}`, {
+        method: 'put',
+        body: JSON.stringify({ data: newStu }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (res.ok) {
+        console.log('修改成功');
+        props.onCancel()
+        ctx.fetchData()
+      }
+    } catch (e) {
+
+    }
+  }, [])
+
+  const updateHandler = () => {
+    updateStudent(props.stuId, inputData)
+  }
   return (
     <tr>
       <td>
@@ -51,7 +74,9 @@ export default function StudentForm() {
         <input value={inputData.address} onChange={(e) => changeInputData(e, 'address')} type="text" />
       </td>
       <td>
-        <button onClick={addStudent}>添加</button>
+        {
+          props.stu ? <><button onClick={props.onCancel}>取消</button> <button onClick={updateHandler}>确认</button></> : <button onClick={addStudent}>添加</button>
+        }
       </td>
     </tr>
   )

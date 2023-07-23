@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import StuContent from '../../../store/stuContent'
+import StudentForm from '../../StudentForm/StudentForm'
 
 export default function Student(props) {
   const { name, gender, age, address } = props.stu
@@ -18,15 +19,29 @@ export default function Student(props) {
       // alert('删除失败')
     }
   }
+  const [isEdit, setIsEdit] = useState(false)
+  const cancelEdit = () => {
+    setIsEdit(false)
+  }
   return (
-    <tr>
-      <td>{name}</td>
-      <td>{gender}</td>
-      <td>{age}</td>
-      <td>{address}</td>
-      <td>
-        <button onClick={() => deleteHandler(props.stuId)}>删除</button>
-      </td>
-    </tr>
+    <>
+      {
+        !isEdit &&
+        <tr>
+          <td>{name}</td>
+          <td>{gender}</td>
+          <td>{age}</td>
+          <td>{address}</td>
+          <td>
+            <button onClick={() => deleteHandler(props.stuId)}>删除</button>
+            <button onClick={() => setIsEdit(true)}>修改</button>
+
+          </td>
+        </tr>
+      }
+      {
+        isEdit && <StudentForm stuId={props.stuId} stu={props.stu} onCancel={cancelEdit} />
+      }
+    </>
   )
 }
