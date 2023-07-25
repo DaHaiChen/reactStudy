@@ -1,0 +1,23 @@
+.app {
+  margin-top: 100px;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+button {
+  padding: 2px;
+}
+
+input {
+  width: 80%;
+  height: 80%;
+}
