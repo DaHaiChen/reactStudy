@@ -1,32 +1,31 @@
 import React, { useEffect } from 'react'
+import { Route } from 'react-router-dom'
 import './app.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setName, setAge } from './store/stuSlice'
-import { setName as setSchoolName, setAddress } from './store/school'
+import Home from './components/home'
+import About from './components/About'
+import Menu from './components/Menu'
+import Student from './components/Student'
 export default function App() {
-  // useSelector 用来加载 state 中的数据
-  const { student, school } = useSelector(state => state)
-  const dispatch = useDispatch()
-  const editName = () => {
-    dispatch(setName('猪八戒'))
-  }
-  const editAge = () => {
-    dispatch(setAge(38))
-  }
+
+  // 将路由组件进行映射
+  //         使用 Route 来映射地址和组件
+  // 属性： path 映射的 url
+  //               component 要挂载的组件
+  //       当 Route 的 路径被访问时，其对应组件就会自动挂载
+  // 注意：默认情况下 Route 并不是严格匹配
+  // 只要url地址的头部和path一致，组件就会挂载
+
   return (
     <div className='app'>
-      <div>
-        <p>{JSON.stringify(student)}</p>
-        <p>{student.name}-- {student.age}--{student.gender}--{student.address}</p>
-        <button onClick={editName}>修改姓名</button>
-        <button onClick={editAge}>修改age</button>
-      </div>
-      <hr />
-      <div>
-        <p>{school.name}--{school.address}</p>
-        <button onClick={() => dispatch(setSchoolName('花果山大学'))}>修改学校</button>
-        <button onClick={() => dispatch(setAddress('花果山大道'))}>修改学校地址</button>
-      </div>
+      <Menu />
+      <Route exact path="/" component={Home} />
+      {/* <Route exact path="/about" component={About} /> */}
+      <Route path="/about">
+        <About />
+        <Route path="/about/student">
+          <Student />
+        </Route>
+      </Route>
     </div>
   )
 }
