@@ -1,5 +1,6 @@
 import React from 'react'
-import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min'
+import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import Hello from './Hello';
 
 export default function About() {
   const STU_DATA = [
@@ -19,22 +20,32 @@ export default function About() {
       age: 20
     }
   ]
-
-  // const location = useLocation()
-  // const match = useRouteMatch()
-  // const params = useParams()
-  const history = useHistory()
-  // console.log(location, match, params, history);
+  const nav = useNavigate()
+  // console.log(nav);
   const routerPush = (id) => {
-    history.push({ pathname: '/about/student', state: { id } })
+    // console.log(id);
+    nav(`/student/${id}`, { replace: true }) // replace 不会产生历史记录
   }
   return (
     <div>
-      <div>关于我们师徒</div>
-      {
-        STU_DATA.map(stu => <p className='pStyle' key={stu.id} onClick={() => routerPush(stu.id)}>{stu.name}</p>)
-      }
-      <button onClick={routerPush}>点我一下</button>
+      <p>About</p>
+      <div>
+        {
+          STU_DATA.map(stu => <p className='pStyle' key={stu.id} onClick={() => routerPush(stu.id)}>{stu.name}</p>)
+        }
+      </div>
+
+      {/* 通过子路由来对Hello进行映射 /about/hello */}
+      {/* <Routes>
+        <Route path='hello' element={<Hello />}></Route>
+      </Routes> */}
+
+      {/* 
+        Outlet 用来表示嵌套路由中的组件
+          当嵌套路由中的路径匹配成功了，Outlet 则表示嵌套路由中的组件
+          当嵌套路由中的路径没有匹配成功，Outlet 就什么都不展示
+       */}
+      <Outlet />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useMatch, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function Student() {
   const STU_DATA = [
@@ -19,11 +19,9 @@ export default function Student() {
       age: 20
     }
   ]
-  const { id } = useParams()
-  const location = useLocation()
-  const match = useMatch('/student/:id')
-  console.log(location, match);
-  const stu = STU_DATA.find(s => s.id == id)
+  const { state } = useLocation()
+  const stu = STU_DATA.find(s => s.id == (state.id || '1'))
+
   return (
     <div>
       <p>Student</p>

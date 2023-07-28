@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink, Navigate } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import classes from './Menu.module.css'
 export default function Menu() {
   return (
@@ -12,15 +12,10 @@ export default function Menu() {
           <Link to="/about">关于</Link>
         </li> */}
         <li>
-          <NavLink to="/" >主页2</NavLink>
+          <NavLink exact activeClassName={classes.active} to="/" >主页2</NavLink>
         </li>
         <li>
-          <NavLink to="/about">关于2</NavLink>
-        </li>
-        <li>
-          <NavLink to="/student/1">Stunent/1</NavLink>
-
-          {/* <Navigate to="/student/1">11</Navigate> */}
+          <NavLink exact activeClassName={classes.active} to="/about">关于2</NavLink>
         </li>
       </ul>
     </div>
