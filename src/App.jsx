@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './app.css'
-import Menu from './components/Menu'
-import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import Student from './components/Student'
-import Hello from './components/Hello'
-import Abc from './components/Abc'
+import ProfilePage from './pages/ProfilePage'
+import HomePage from './pages/HomePage'
+import AuthFormPage from './pages/AuthFormPage'
+import Layout from './layout'
+import { useSelector } from 'react-redux'
+
+
 export default function App() {
+  const auth = useSelector(state => state.auth)
   return (
     <div className='app'>
-      <Menu />
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='about' element={<About></About>}>
-          <Route path='hello' element={<Hello />}></Route>
-          <Route path='abc' element={<Abc />}></Route>
-        </Route>
-        <Route path='/student/:id' element={<Student></Student>}></Route>
-      </Routes>
+      <Layout >
+        <Routes>
+          <Route path='/' element={<HomePage></HomePage>}></Route>
+          <Route path='/authForm' element={<AuthFormPage></AuthFormPage>}></Route>
+          <Route path='/profile' element={auth.isLogin ? <ProfilePage /> : <Navigate to={'/authForm'} replace />}></Route>
+        </Routes>
+      </Layout>
     </div>
   )
 }

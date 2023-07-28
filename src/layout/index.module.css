@@ -1,0 +1,11 @@
+.layout {
+  display: flex;
+}
+
+.layoutLeft {
+  width: 25%;
+}
+
+.layoutRight {
+  flex: 1;
+}
