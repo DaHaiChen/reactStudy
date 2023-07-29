@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
-import { Button, Checkbox, Form, Input, message } from 'antd';
+import React, { useState } from 'react'
+import { Button, Form, Input, message } from 'antd';
 import { useLoginMutation, useRegisterMutation } from '../store/api/Auth'
 import { useDispatch } from 'react-redux';
-import { login, logout } from '../store/reducer/authSlice'
-import { useNavigate } from 'react-router-dom';
+import { login } from '../store/reducer/authSlice'
+import { useLocation, useNavigate } from 'react-router-dom';
 const layout = {
   labelCol: {
     span: 6,
@@ -24,6 +24,9 @@ export default function AuthForm() {
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const location = useLocation()
+  const path = location?.state?.preLocation?.pathname || '/'
   const [isLoginForm, setIsLoginForm] = useState(true)
   // 引入注册的 api
   const [regFn, { error: regError }] = useRegisterMutation()
@@ -46,7 +49,7 @@ export default function AuthForm() {
           type: 'success',
           content: '登录成功',
         });
-        navigate('/', { replace: true })
+        navigate(path, { replace: true })
       } else {
         messageApi.open({
           type: 'error',
